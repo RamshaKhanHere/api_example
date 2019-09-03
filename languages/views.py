@@ -1,12 +1,13 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Language, Paradigm, Programmer
 from .serializers import LanguageSerializer, ParadigmSerializer, ProgrammerSerializer
 
 class LanguageView(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
-
+    #permission authentication for specific view
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class ParadigmView(viewsets.ModelViewSet):
